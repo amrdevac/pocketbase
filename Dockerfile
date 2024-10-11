@@ -1,8 +1,7 @@
-# Gunakan base image ringan
 FROM alpine:latest
 
-# Copy PocketBase binary ke dalam image
-COPY ./pocketbase /pocketbase
+# Copy PocketBase binary dari folder bin ke dalam image Docker
+COPY ./bin/pocketbase /pocketbase
 
 # Buat direktori data untuk menyimpan database
 RUN mkdir /pb_data

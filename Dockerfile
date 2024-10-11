@@ -1,6 +1,18 @@
-FROM pocketbase/pocketbase:latest
+# Gunakan base image ringan
+FROM alpine:latest
 
-# Copy the PocketBase files if you have any additional files or configs
-COPY . /app
+# Copy PocketBase binary ke dalam image
+COPY ./pocketbase /pocketbase
 
-CMD ["./pocketbase", "serve", "--http=0.0.0.0:8090"]
+# Buat direktori data untuk menyimpan database
+RUN mkdir /pb_data
+ENV POCKETBASE_DATA=/pb_data
+
+# Set permissions untuk menjalankan binary
+RUN chmod +x /pocketbase
+
+# Expose port 8090 untuk PocketBase
+EXPOSE 8090
+
+# Jalankan PocketBase pada port yang diinginkan
+CMD ["/pocketbase", "serve", "--http=0.0.0.0:8090"]

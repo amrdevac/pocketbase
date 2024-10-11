@@ -1,4 +1,4 @@
-FROM ghcr.io/pocketbase/pocketbase:latest
+FROM pocketbase/pocketbase:latest
 
 # Copy the PocketBase files if you have any additional files or configs
 COPY . /app
